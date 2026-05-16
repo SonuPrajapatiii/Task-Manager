@@ -12,7 +12,9 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post('/auth/signup', formData);
+      const {data} = await api.post('/auth/signup', formData);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Signup failed');
