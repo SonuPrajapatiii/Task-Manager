@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
 </div>
 
-<h1 align="center">🚀 TeamTasker</h1>
+<h1 align="center">🚀 Team Manager</h1>
 
 <p align="center">
   <strong>A modern, responsive, full-stack Task Management platform built with the MERN stack.</strong><br>
