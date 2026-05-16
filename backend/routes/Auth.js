@@ -7,7 +7,10 @@ const router = express.Router();
 
 router.post('/signup', async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role } = req.body || {};
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
     
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'User already exists' });
@@ -18,13 +21,17 @@ router.post('/signup', async (req, res) => {
 
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
+    console.error('Signup error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
 
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body || {};
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Missing email or password' });
+    }
     
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: 'Invalid email or password' });
@@ -40,6 +47,7 @@ router.post('/login', async (req, res) => {
 
     res.json({ token, user: { _id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
