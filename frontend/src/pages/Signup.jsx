@@ -24,8 +24,8 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#121215]">
       {/* Dynamic Background Elements */}
-      <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-[-20%] right-[-10%] w-125 h-125 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none animate-pulse" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-125 h-125 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
       
       <div className="w-full max-w-md p-8 bg-[#1a1a24] border border-gray-800 shadow-xl rounded-2xl animate-fade-in mx-4 z-10">
         <div className="text-center mb-8">
@@ -80,7 +80,7 @@ const Signup = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-70 mt-2"
+            className="w-full py-3 px-4 bg-linear-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-70 mt-2"
           >
             {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
