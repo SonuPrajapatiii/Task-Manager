@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../api';
 import { Plus, CheckSquare, Calendar, Flag, User, Trash2, Search, Eye, Edit2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -61,6 +61,7 @@ const Tasks = () => {
       handleCancelForm();
       fetchData();
     } catch (err) {
+      console.log(err.message);
       alert('Error creating task');
     }
   };
@@ -70,6 +71,7 @@ const Tasks = () => {
       await api.patch(`/tasks/${taskId}`, { status: newStatus });
       fetchData();
     } catch (err) {
+      console.log(err.message);
       alert('Error updating status');
     }
   };
@@ -80,6 +82,7 @@ const Tasks = () => {
       await api.delete(`/tasks/${id}`);
       fetchData();
     } catch (err) {
+      console.log(err.message);
       alert('Error deleting task');
     }
   };
@@ -111,7 +114,7 @@ const Tasks = () => {
           {isAdmin && (
             <button 
               onClick={() => isCreating ? handleCancelForm() : setIsCreating(true)}
-              className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0"
+              className="flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium whitespace-nowrap shrink-0"
             >
               <Plus size={20} />
               {isCreating ? 'Cancel' : 'New Task'}
@@ -208,7 +211,7 @@ const Tasks = () => {
                           </span>
                           {task.dueDate && (
                             <span className="text-xs font-medium text-gray-400 flex items-center gap-1">
-                              <Calendar size={12}/> {new Date(task.dueDate).toLocaleDateString()}
+                              <Calendar size={12} className="text-white" /> {new Date(task.dueDate).toLocaleDateString()}
                             </span>
                           )}
                         </div>
@@ -218,7 +221,7 @@ const Tasks = () => {
                       <div className="flex items-center gap-2">
                         {task.assignedTo ? (
                           <>
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center text-xs font-bold text-white">
+                            <div className="w-6 h-6 rounded-full bg-linear-to-br from-gray-700 to-gray-600 flex items-center justify-center text-xs font-bold text-white">
                               {task.assignedTo.name.charAt(0)}
                             </div>
                             <span className="text-sm font-medium text-gray-300">{task.assignedTo.name}</span>

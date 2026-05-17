@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import { Plus, Users, FolderOpen, Trash2, Search } from 'lucide-react';
@@ -58,6 +58,7 @@ const Projects = () => {
       setIsCreating(false);
       fetchData();
     } catch (err) {
+      console.log(err.message);
       alert('Error creating project');
     }
   };
@@ -68,6 +69,7 @@ const Projects = () => {
       await api.delete(`/projects/${id}`);
       fetchData();
     } catch (err) {
+      console.log(err.message);
       alert('Error deleting project');
     }
   };
@@ -99,7 +101,7 @@ const Projects = () => {
           {isAdmin && (
             <button 
               onClick={() => setIsCreating(!isCreating)}
-              className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium w-full sm:w-auto flex-shrink-0"
+              className="flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium w-full sm:w-auto shrink-0"
             >
               <Plus size={20} />
               {isCreating ? 'Cancel' : 'New Project'}
@@ -164,7 +166,7 @@ const Projects = () => {
               )}
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-900/50 to-indigo-900/50 flex items-center justify-center flex-shrink-0 text-blue-400 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-900/50 to-indigo-900/50 flex items-center justify-center shrink-0 text-blue-400 group-hover:scale-110 transition-transform">
                     <FolderOpen size={24} />
                   </div>
                   <h4 className="font-extrabold text-xl text-white line-clamp-1">{proj.title}</h4>
@@ -180,7 +182,7 @@ const Projects = () => {
                 <div className="flex flex-wrap gap-2">
                   {proj.members.map((m, idx) => (
                     <div key={m._id} className="relative group/tooltip">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-gray-700 to-gray-600 border-2 border-gray-800 flex items-center justify-center text-xs font-bold text-white shadow-sm z-10 hover:z-20 transform hover:scale-110 transition-all cursor-help" style={{ marginLeft: idx > 0 ? '-10px' : '0' }}>
+                      <div className="w-8 h-8 rounded-full bg-linear-to-tr from-gray-700 to-gray-600 border-2 border-gray-800 flex items-center justify-center text-xs font-bold text-white shadow-sm z-10 hover:z-20 transform hover:scale-110 transition-all cursor-help" style={{ marginLeft: idx > 0 ? '-10px' : '0' }}>
                         {m.name.charAt(0)}
                       </div>
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-30">

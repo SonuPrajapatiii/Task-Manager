@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../api';
-import { CheckCircle2, Clock, AlertCircle, FileText, ArrowRight, Folder } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { CheckCircle2, Clock, AlertCircle, FileText, Folder } from 'lucide-react';
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -80,7 +79,7 @@ const Dashboard = () => {
             {tasks.slice(0, 5).map((task, i) => (
               <div key={task._id} className="p-4 sm:p-6 flex flex-col sm:flex-row justify-between sm:items-center hover:bg-gray-800/40 transition-colors gap-4" style={{ animationDelay: `${i * 100}ms` }}>
                 <div className="flex items-start gap-4">
-                  <div className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
+                  <div className={`mt-1 w-2 h-2 rounded-full shrink-0 ${
                     task.status === 'Completed' ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]' :
                     task.status === 'In Progress' ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]' :
                     'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]'
